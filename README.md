@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# Sistem Manajemen Skincare Inventory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplikasi web full-stack untuk mengelola inventori produk skincare dengan operasi CRUD, dibangun menggunakan React.js, PHP, dan MySQL.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Tentang Aplikasi
+Proyek ini adalah aplikasi CRUD (Create, Read, Update, Delete) yang dirancang untuk membantu mengelola inventori produk skincare secara efisien. Pengguna dapat melacak detail produk termasuk nama, brand, kategori, jumlah, harga, dan tanggal kadaluarsa melalui interface web yang intuitif.
+Tujuan: Aplikasi ini dikembangkan sebagai proyek pembelajaran untuk memahami pengembangan web full-stack, mengintegrasikan teknologi frontend (React), backend (PHP), dan database (MySQL).
 
-### `npm start`
+## Teknologi yang digunakan
+Frontend: React.js, Tailwind CSS, Lucide React, JavaScript 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Backend: PHP dan REST API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Database: MySQL, phpMyAdmin
 
-### `npm test`
+## Instalasi
+Pastikan telah menginstal: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- XAMPP (untuk Apache dan MySQL)
+ 
+- Node.JS (v14 atau lebih tinggi)
 
-### `npm run build`
+- git.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup Backend:
+1. Clone repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   git clone https://github.com/username-anda/skincare-inventory.git
+cd skincare-inventory
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Setup Backend (PHP API)
 
-### `npm run eject`
+   Copy file backend ke folder htdocs XAMPP
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   cp -r backend/ C:/xampp/htdocs/skincare-api/
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Buat database
+   
+   - Start XAMPP (Apache & MySQL)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - Buka phpMyAdmin: http://localhost/phpmyadmin
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   - Buat database: skincare_inventory
 
-## Learn More
+   - Import file SQL atau jalankan query ini:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```
+    CREATE DATABASE skincare_inventory;
 
-### Code Splitting
+    USE skincare_inventory;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    CREATE TABLE products (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        brand VARCHAR(255) NOT NULL,
+        category VARCHAR(100) NOT NULL,
+        quantity INT NOT NULL,
+        price DECIMAL(10, 2) NOT NULL,
+        expiry_date DATE NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    ```
 
-### Analyzing the Bundle Size
+4. Test backend API
+ 
+   Buka di browser:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   http://localhost/skincare-api/read.php
 
-### Making a Progressive Web App
+   Harus mengembalikan response JSON
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  ## Setup Frontend
+  
+  1. Install dependencies
+     ```
+     cd frontend
+     npm install
+     ```
 
-### Advanced Configuration
+  2. Install package yang diperlukan
+     ```
+     npm install lucide-react
+     npm install -D tailwindcss postcss autoprefixer
+     npx tailwindcss init -p
+     ```
+     
+  3. Konfigurasi Tailwind CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+     Update tailwind.config.js:
 
-### Deployment
+     ```
+     module.exports = {
+       content: [
+          "./src/**/*.{js,jsx,ts,tsx}",
+       ],
+       theme: {
+         extend: {},
+       },
+       plugins: [],
+     }
+     ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+     Update src/index.css:
 
-### `npm run build` fails to minify
+      ```
+     @tailwind base;
+     @tailwind components;
+     @tailwind utilities;
+      ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   4. Jalankan development server
+      ```
+      npm start
+      ```
+       Aplikasi akan terbuka di http://localhost:3000
+
+
+## Cara penggunaan
+
+Menambahkan produk
+
+- Klik tombol "Add Product"
+  
+- Isi form dengan detail produk
+  
+- Klik "Create" untuk menyimpan
+
+
+Mengedit produk
+
+- Klik icon Edit (pensil) pada baris produk
+  
+- Ubah informasi yang diperlukan
+  
+- Klik "Update" untuk menyimpan perubahan
+
+  
+Menghapus produk
+
+- Klik icon Delete (trash) pada baris produk
+  
+- Konfirmasi penghapusan
+  
+- Produk akan dihapus dari inventori
+  
+
+Mencari produk
+
+- Ketik di search bar untuk memfilter produk berdasarkan nama, brand, atau kategori
+
+  
+Hasil akan diupdate secara real-time
+
+
