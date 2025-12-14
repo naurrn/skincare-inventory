@@ -1,7 +1,7 @@
 # Sistem Manajemen Skincare Inventory
 
 Aplikasi web full-stack untuk mengelola inventori produk skincare dengan operasi CRUD, dibangun menggunakan React.js, PHP, dan MySQL.
-
+![UI](public/Picture1.png) ![UI](public/Picture2.png)
 
 ## Tentang Aplikasi
 Proyek ini adalah aplikasi CRUD (Create, Read, Update, Delete) yang dirancang untuk membantu mengelola inventori produk skincare secara efisien. Pengguna dapat melacak detail produk termasuk nama, brand, kategori, jumlah, harga, dan tanggal kadaluarsa melalui interface web yang intuitif.
